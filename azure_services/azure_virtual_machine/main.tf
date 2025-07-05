@@ -1,7 +1,5 @@
-
-
-resource "azurerm_network_interface" "nic" {
-  name                = "dev-nic"
+resource "azurerm_network_interface" "vm_dev_eus_01_nic" {
+  name                = "nic-dev-eus-01"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
 
@@ -12,14 +10,14 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "example" {
-  name                = "example-machine"
+resource "azurerm_linux_virtual_machine" "vm_dev_eus_01" {
+  name                = "vm-dev-eus-01"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
   network_interface_ids = [
-    azurerm_network_interface.example.id,
+    azurerm_network_interface.vm_dev_eus_01_nic.id,
   ]
 
   admin_ssh_key {
